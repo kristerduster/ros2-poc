@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "/home/kristerduster_wsl/ros2-poc/src/sub_pub",
+    "cmake.configureEnvironment": {
+        "CMAKE_PREFIX_PATH": "/opt/ros/humble:/home/kristerduster_wsl/ros2-poc/install:${CMAKE_PREFIX_PATH}"
+    }
+}
