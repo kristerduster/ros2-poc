@@ -39,3 +39,17 @@
 
 # debug information files
 *.dwo
+
+# ROS 2 / colcon build outputs
+build/
+install/
+log/
+.colcon/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Editor artifacts
+.vscode/
+*.swp
