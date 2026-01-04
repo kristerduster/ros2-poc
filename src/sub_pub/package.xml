@@ -15,6 +15,7 @@
   <!--both pub and sub cpp src files depend on rclcpp and std_msgs header files so tell ros2 build system-->
   <exec_depend>rclcpp</exec_depend> 
   <exec_depend>std_msgs</exec_depend>
+  <exec_depend>rclpy</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
