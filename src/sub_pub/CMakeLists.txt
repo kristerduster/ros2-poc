@@ -16,9 +16,17 @@ ament_target_dependencies(publisher_node rclcpp std_msgs)
 add_executable(subscriber_node src/subscriber.cpp)
 ament_target_dependencies(subscriber_node rclcpp std_msgs)
 
+add_executable(edited_subscriber_node src/edited_subscriber.cpp)
+ament_target_dependencies(edited_subscriber_node rclcpp std_msgs)
+
+add_executable(edited_listener_node src/edited_listener.cpp)
+ament_target_dependencies(edited_listener_node rclcpp std_msgs)
+
 install(TARGETS
   publisher_node
   subscriber_node
+  edited_subscriber_node
+  edited_listener_node
   DESTINATION lib/${PROJECT_NAME})
 
 install(PROGRAMS
