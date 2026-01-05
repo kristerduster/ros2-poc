@@ -157,6 +157,11 @@ private:
       rate.emplace(fps_);
     }
 
+    // FPS measurement variables
+    int frame_count = 0;
+    auto fps_start = std::chrono::steady_clock::now();
+    const int fps_report_interval = 100; // report every N frames
+
     while (running_.load() && rclcpp::ok())
     {
       cv::Mat frame;
@@ -182,6 +187,17 @@ private:
       {
         cv::imshow(window_name_, frame);
         cv::waitKey(1);
+      }
+
+      // FPS measurement
+      frame_count++;
+      if (frame_count % fps_report_interval == 0)
+      {
+        auto fps_end = std::chrono::steady_clock::now();
+        std::chrono::duration<double> elapsed = fps_end - fps_start;
+        double measured_fps = fps_report_interval / elapsed.count();
+        RCLCPP_INFO(get_logger(), "Publishing at %.1f FPS (uncapped)", measured_fps);
+        fps_start = fps_end;
       }
 
       // Sleep to respect requested FPS when capped
