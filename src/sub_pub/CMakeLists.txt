@@ -9,6 +9,10 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(image_transport REQUIRED)
+find_package(OpenCV REQUIRED)
 
 add_executable(publisher_node src/publisher.cpp)
 ament_target_dependencies(publisher_node rclcpp std_msgs)
@@ -22,11 +26,17 @@ ament_target_dependencies(edited_subscriber_node rclcpp std_msgs)
 add_executable(edited_listener_node src/edited_listener.cpp)
 ament_target_dependencies(edited_listener_node rclcpp std_msgs)
 
+add_executable(image_publisher_node src/image_publisher.cpp)
+ament_target_dependencies(image_publisher_node rclcpp sensor_msgs cv_bridge image_transport)
+target_include_directories(image_publisher_node PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(image_publisher_node ${OpenCV_LIBRARIES})
+
 install(TARGETS
   publisher_node
   subscriber_node
   edited_subscriber_node
   edited_listener_node
+  image_publisher_node
   DESTINATION lib/${PROJECT_NAME})
 
 install(PROGRAMS
