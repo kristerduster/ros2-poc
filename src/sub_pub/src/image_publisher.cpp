@@ -259,6 +259,7 @@ int main(int argc, char *argv[])
   rclcpp::shutdown();
   return 0;
 }
-
+// in powershell admin, run: usbipd attach --busid <BUSID> -w Ubuntu-22.04
+// to detach run: usbipd detach --busid <BUSID 1-6>
 // usage: ros2 run sub_pub image_publisher_node --ros-args -p source:="/mnt/c/Users/krist/Hui Lab/DropShop-Python/video_data/test_videos/Rainbow 11-11-22.m4v" -p fps:=0.0 -p show_image:=true
 // OR: ros2 run sub_pub image_publisher_node --ros-args -p source:=0 -p fps:=0.0 -p show_image:=true

@@ -31,12 +31,18 @@ ament_target_dependencies(image_publisher_node rclcpp sensor_msgs cv_bridge imag
 target_include_directories(image_publisher_node PRIVATE ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(image_publisher_node ${OpenCV_LIBRARIES})
 
+add_executable(image_subscriber_node src/image_subscriber.cpp)
+ament_target_dependencies(image_subscriber_node rclcpp sensor_msgs cv_bridge image_transport)
+target_include_directories(image_subscriber_node PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(image_subscriber_node ${OpenCV_LIBRARIES})
+
 install(TARGETS
   publisher_node
   subscriber_node
   edited_subscriber_node
   edited_listener_node
   image_publisher_node
+  image_subscriber_node
   DESTINATION lib/${PROJECT_NAME})
 
 install(PROGRAMS
